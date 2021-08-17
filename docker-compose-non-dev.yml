@@ -49,8 +49,8 @@ services:
     # entrypoint: >
       # /bin/sh -c "pwd && cd docker && ls"
     command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
-    command: >
-      /bin/sh -c "cd docker && ls && pwd"
+    # command: >
+    #   /bin/sh -c "cd docker && ls && pwd"
     user: "root"
     restart: unless-stopped
     ports:
