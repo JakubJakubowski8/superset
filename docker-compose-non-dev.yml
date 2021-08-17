@@ -47,8 +47,10 @@ services:
     image: *superset-image
     container_name: superset_app
     # entrypoint: >
-    #   /bin/sh -c "pwd && cd docker && ls"
-    command: ["pwd && cd docker && ls", "./docker/docker-bootstrap.sh", "app-gunicorn"]
+      # /bin/sh -c "pwd && cd docker && ls"
+    command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
+    command: >
+      /bin/sh -c "pwd && cd docker && ls"
     user: "root"
     restart: unless-stopped
     ports:
