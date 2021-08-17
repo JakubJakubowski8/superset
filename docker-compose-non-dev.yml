@@ -47,7 +47,7 @@ services:
     image: *superset-image
     container_name: superset_app
     entrypoint: >
-      /bin/sh -c "./docker/docker-bootstrap.sh"
+      /bin/sh -c "ls"
     # command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
     user: "root"
     restart: unless-stopped
