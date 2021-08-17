@@ -50,7 +50,7 @@ services:
       # /bin/sh -c "pwd && cd docker && ls"
     command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
     command: >
-      /bin/sh -c "pwd && cd docker && ls"
+      /bin/sh -c "cd docker && ls && pwd"
     user: "root"
     restart: unless-stopped
     ports:
