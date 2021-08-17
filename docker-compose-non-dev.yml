@@ -20,7 +20,7 @@ x-superset-depends-on: &superset-depends-on
   - redis
 x-superset-volumes: &superset-volumes
   # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
-  - ./docker:/docker
+  - ./docker:/app/docker
   - superset_home:/app/superset_home
 
 version: "3.4"
@@ -46,11 +46,7 @@ services:
     env_file: docker/.env-non-dev
     image: *superset-image
     container_name: superset_app
-    # entrypoint: >
-      # /bin/sh -c "pwd && cd docker && ls"
-    command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
-    # command: >
-    #   /bin/sh -c "cd docker && ls && pwd"
+    command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
     user: "root"
     restart: unless-stopped
     ports:
@@ -61,7 +57,7 @@ services:
   superset-init:
     image: *superset-image
     container_name: superset_init
-    command: ["./docker/docker-init.sh"]
+    command: ["/app/docker/docker-init.sh"]
     env_file: docker/.env-non-dev
     depends_on: *superset-depends-on
     user: "root"
@@ -70,7 +66,7 @@ services:
   superset-worker:
     image: *superset-image
     container_name: superset_worker
-    command: ["./docker/docker-bootstrap.sh", "worker"]
+    command: ["/app/docker/docker-bootstrap.sh", "worker"]
     env_file: docker/.env-non-dev
     restart: unless-stopped
     depends_on: *superset-depends-on
@@ -80,7 +76,7 @@ services:
   superset-worker-beat:
     image: *superset-image
     container_name: superset_worker_beat
-    command: ["./docker/docker-bootstrap.sh", "beat"]
+    command: ["/app/docker/docker-bootstrap.sh", "beat"]
     env_file: docker/.env-non-dev
     restart: unless-stopped
     depends_on: *superset-depends-on
