@@ -20,7 +20,7 @@ x-superset-depends-on: &superset-depends-on
   - redis
 x-superset-volumes: &superset-volumes
   # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
-  - ./docker:./docker
+  - ./docker:/app/docker
   - superset_home:/app/superset_home
 
 version: "3.4"
@@ -46,7 +46,9 @@ services:
     env_file: docker/.env-non-dev
     image: *superset-image
     container_name: superset_app
-    command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
+    entrypoint: >
+      /bin/sh -c "./docker/docker-bootstrap.sh"
+    # command: ["./docker/docker-bootstrap.sh", "app-gunicorn"]
     user: "root"
     restart: unless-stopped
     ports:
