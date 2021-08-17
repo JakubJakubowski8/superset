@@ -57,6 +57,7 @@ services:
   superset-init:
     image: *superset-image
     container_name: superset_init
+    entrypoin: ./docker/docker-entrypoint.sh
     command: ["/app/docker/docker-init.sh"]
     env_file: docker/.env-non-dev
     depends_on: *superset-depends-on
