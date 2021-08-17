@@ -46,7 +46,7 @@ services:
     env_file: docker/.env-non-dev
     image: *superset-image
     container_name: superset_app
-    command: ["/bin/sh", "-c", "/app/docker/docker-bootstrap.sh", "/bin/sh", "-c", "app-gunicorn"]
+    command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
     user: "root"
     restart: unless-stopped
     ports:
