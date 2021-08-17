@@ -6,4 +6,8 @@ export DOCKER_CERT_PATH="${PWD}/credentials/dev_env"
 
 /usr/bin/docker-compose -f docker-compose-non-dev.yml down
 /usr/bin/docker-compose -f docker-compose-non-dev.yml pull
-/usr/bin/docker-compose -f docker-compose-non-dev.yml up -d
+# /usr/bin/docker-compose -f docker-compose-non-dev.yml up -d
+
+docker-compose -f docker-compose-non-dev.yml down
+docker-compose -f docker-compose-non-dev.yml pull
+docker-compose -f docker-compose-non-dev.yml up -d
