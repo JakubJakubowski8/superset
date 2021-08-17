@@ -12,4 +12,4 @@ export DOCKER_CERT_PATH="${PWD}/credentials/dev_env"
 docker-compose -f docker-compose-non-dev.yml kill
 docker-compose -f docker-compose-non-dev.yml down
 docker-compose -f docker-compose-non-dev.yml pull
-# docker-compose -f docker-compose-non-dev.yml up -d
+docker-compose -f docker-compose-non-dev.yml up -d
